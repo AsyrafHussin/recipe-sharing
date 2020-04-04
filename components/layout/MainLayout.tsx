@@ -3,6 +3,8 @@ import { theme } from "../../utils/theme";
 import { GlobalStyle } from "../../utils/globalStyle";
 import Head from "next/head";
 import { Layout } from "antd";
+import { MainFooter } from "./MainFooter";
+import styled from "styled-components";
 
 const { Content } = Layout;
 
@@ -47,14 +49,23 @@ const MainHead = ({ title }: { title: string }) => (
   </Head>
 );
 
+const StyledBody = styled.div`
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+`;
+
 const MainLayout = ({ children, title }) => {
   return (
     <ThemeProvider theme={theme}>
       <MainHead title={title} />
       <GlobalStyle />
-      <Layout>
-        <Content>{children}</Content>
-      </Layout>
+      <StyledBody>
+        <Layout>
+          <Content>{children}</Content>
+          <MainFooter />
+        </Layout>
+      </StyledBody>
     </ThemeProvider>
   );
 };
